@@ -1,0 +1,45 @@
+{% load static %}
+
+<header class="header-area header-default sticky-header">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-5 col-sm-3 col-md-3 col-lg-2 pr-0">
+          <div class="header-logo-area">
+            <a href="/">
+              <img class="logo-main" src="{% static 'assets/img/logo.png' %}" alt="Logo" />
+              <img class="logo-light" src="{% static 'assets/img/logo.png' %}" alt="Logo" />
+            </a>
+          </div>
+        </div>
+        <div class="col-7 col-sm-9 col-md-9 col-lg-10">
+          <div class="header-align">
+            <div class="header-navigation-area">
+              <ul class="main-menu nav justify-content-center">
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="{% url 'blog:about-us'%}">About Us</a></li>
+                <li><a href="{% url 'blog:causes-view'%}">Causes</a></li>
+               
+                <li class="has-submenu"><a href="{% url 'blog:blogs-view'%}">Blog</a>
+                  
+                </li>
+                <li class="has-submenu"><a href="{% url 'blog:page-view'%}">Pages</a>
+                  <ul class="submenu-nav">
+                    <li><a href="{% url 'blog:volunteer'%}">Volunteer</a></li>
+                  </ul>
+                </li>
+                <li><a href="{% url 'blog:contact' %}">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="header-action-area">
+              <button class="btn-menu d-xl-none">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+              <a href="{% url 'blog:contact' %}" class="btn-theme btn-gradient btn-slide btn-style">Give Support <img class="icon icon-img" src="{% static 'assets/img/icons/arrow-line-right2.png' %}" alt="Icon"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>

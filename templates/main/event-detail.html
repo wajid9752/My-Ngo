@@ -1,0 +1,86 @@
+
+{% extends 'main/base.html' %}
+{% block content %}
+{% load static %}
+
+
+
+<main class="main-content site-wrapper-reveal">
+    <!--== Start Page Title Area ==-->
+    <section class="page-title-area" data-bg-img="{% static 'assets/img/blog/ngoo.jpg' %}">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="page-title-content text-center">
+              <h2 class="title text-white">Event Details</h2>
+              <div class="bread-crumbs"><a href="/">Home<span class="breadcrumb-sep">//</span></a><span class="active">Events</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--== End Page Title Area ==-->
+
+    <!--== Start Event Details Area ==-->
+    <section class="event-details-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="event-details-column">
+              <div class="event-details-content">
+                <div class="event-details">
+                  <div class="thumb">
+                    <img class="mb-40 w-100" src="{{event.featured_image.url}}" alt="Image-Givest">
+                  </div>
+                  <div class="event-time-info">
+                    <div class="info-item">
+                      <div class="icon"><img src="{% static 'assets/img/icons/e1.png' %}" alt="Icon-Image"></div>
+                      <h4>{{ event.date_and_time|date:'d-m-y' }}</h4>
+                    </div>
+                    <div class="info-item">
+                      <div class="icon"><img src="{% static 'assets/img/icons/e2.png' %}" alt="Icon-Image"></div>
+                      <h4>{{ event.date_and_time|time:'h A' }}
+                    </div>
+                    <div class="info-item event-location">
+                      <div class="icon"><img src="{% static 'assets/img/icons/e3.png' %}" alt="Icon-Image"></div>
+                      <h4>{{event.location|safe}}</h4>
+                    </div>
+                  </div>
+                  <div class="event-category-post">
+                    <div class="event-category">{{event.event_type}}</div>
+                    <div class="event-author">By:  Author</div>
+                  </div>
+                  <h3 class="event-title">{{event.event_name}}</h3>
+                  <p>
+                    {{event.description|safe}}
+                  </p>
+                 
+                </div>
+              </div>
+              <div class="sidebar-area">
+               
+                <div class="widget">
+                  <h3 class="widget-title">Causes Categories</h3>
+                  <div class="separator-line">
+                    <img class="me-1" src="{% static 'assets/img/shape/line-t2.png' %}" alt="Image-Givest">
+                  </div>
+                  <div class="widget-category">
+                    {% for cat in categorys %}
+                    <a href="">{{cat.category}} <span>{{cat.blog_cat.count}}</span></a>
+                    {% endfor %}
+                  </div>
+                </div>
+                
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--== End Event Details Area ==-->
+  </main>
+
+
+
+{% endblock %}

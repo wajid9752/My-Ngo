@@ -1,0 +1,158 @@
+{% extends 'main/base.html' %}
+{% block content %}
+{% load static %}
+
+<style>
+
+.page-numbers {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.page-numbers li {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.page-number {
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    color: #333;
+}
+
+.page-number.active {
+    background-color: #007bff;
+    color: #fff;
+    border: 1px solid #007bff;
+}
+
+</style>
+
+<main class="main-content site-wrapper-reveal">
+    <!--== Start Page Title Area ==-->
+    <section class="page-title-area" data-bg-img="{% static 'assets/img/blog/ngoo.jpg' %}">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="page-title-content text-center">
+              <h2 class="title text-white">Blog Post</h2>
+              <div class="bread-crumbs"><a href="/">Home<span class="breadcrumb-sep">//</span></a><span class="active">Blog</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--== End Page Title Area ==-->
+
+    <!--== Start Blog Area Wrapper ==-->
+    <section class="blog-grid-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="blog-content-column">
+              <div class="blog-content-area post-items-style2">
+
+                <!--== Start Blog Post Item ==-->
+                {% for bg in blogs %}
+                <div class="post-item">
+                  <div class="thumb">
+                    <a href="{{bg.get_absolute_url}}"><img src="{{bg.mainImg.url}}" alt="Givest-Blog"></a>
+                    <div class="meta-date">
+                      <a href=""><span>{{ bg.date|date:'d' }}</span> {{ bg.date|date:'F' }}</a>
+                    </div>
+                    <div class="shape-line"></div>
+                  </div>
+                  <div class="content">
+                    <div class="inner-content">
+                      <div class="meta">
+                        <a class="post-category" href="">{{bg.category}}</a>
+                        <a class="post-author" href=""><span class="icon"><img class="icon-img" src="{% static 'assets/img/icons/admin1.png' %}" 
+                          alt="Icon-Image"></span>By: Author</a>
+                      </div>
+                      <h4 class="title">
+                        <a href="{{bg.get_absolute_url}}">{{bg.title}}</a>
+                      </h4>
+                      <p>{{bg.short_caption | safe}}</p>
+                      <a href="{{bg.get_absolute_url}}" class="btn-theme btn-border-gradient btn-size-md"><span>Read More <img class="icon icon-img" src="{% static 'assets/img/icons/arrow-line-right-gradient.png' %}" alt="Icon"></span></a>
+                    </div>
+                  </div>
+                </div>
+                <!--== End Blog Post Item ==-->
+                {% endfor %}
+                <div class="pagination-area pt-0 pb-0">
+                  <nav>
+                      <ul class="page-numbers">
+                          {% for i in blogs.paginator.page_range %}
+                              <li class="{% if blogs.number == i %}current{% endif %}">
+                                  <a class="page-number {% if blogs.number == i %}active{% endif %}" href="?page={{ i }}">{{ i }}</a>
+                              </li>
+                          {% endfor %}
+                          {% if blogs.has_next %}
+                              <li>
+                                  <a class="page-number next" href="?page={{ blogs.next_page_number }}">
+                                      <img src="{% static 'assets/img/icons/arrow-line-right-gradient.png' %}" alt="Icon-Image">
+                                  </a>
+                              </li>
+                          {% endif %}
+                      </ul>
+                  </nav>
+              </div>
+              
+              
+              </div>
+              <div class="sidebar-area">
+                <div class="widget">
+                  <h3 class="widget-title">Search Here</h3>
+                  <div class="separator-line">
+                    <img class="me-1" src="{% static 'assets/img/shape/line-t2.png' %}" alt="Image-Givest">
+                  </div>
+                  <div class="widget-search-box">
+                    <form action="#" method="post">
+                      <div class="form-input-item">
+                        <label for="search2" class="sr-only">Search Here</label>
+                        <input type="text" id="search2" placeholder="Search here">
+                        <button type="submit" class="btn-src">
+                          <i class="icofont-search-1"></i>
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div class="widget">
+                  <h3 class="widget-title">Causes Categories</h3>
+                  <div class="separator-line">
+                    <img class="me-1" src="{% static 'assets/img/shape/line-t2.png' %}" alt="Image-Givest">
+                  </div>
+                  <div class="widget-category">
+                    {% for cat in categorys %}
+                    <a href="causes-details.html">{{cat.category}} <span>{{cat.blog_cat.count}}</span></a>
+                    {% endfor %}
+                  </div>
+                </div>
+              
+                <div class="widget mb-0 pb-3">
+                  <h3 class="widget-title">Popular Tags</h3>
+                  <div class="separator-line">
+                    <img class="me-1" src="{% static 'assets/img/shape/line-t2.png' %}" alt="Image-Givest">
+                  </div>
+                  <div class="widget-tags">
+                    <ul>
+                      {% for cat in categorys %}
+                      <li><a href="#/">{{cat.category}} <span>{{cat.blog_cat.count}}</span></a></li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--== End Blog Area Wrapper ==-->
+  </main>
+
+
+{% endblock %}

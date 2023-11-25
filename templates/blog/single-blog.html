@@ -1,0 +1,71 @@
+{% extends 'main/base.html' %}
+{% block content %}
+{% load static %}
+
+
+<main class="main-content site-wrapper-reveal">
+      <!--== Start Page Title Area ==-->
+      <section class="page-title-area" data-bg-img="{% static 'assets/img/blog/ngoo.jpg' %}">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="page-title-content text-center">
+                <h2 class="title text-white">Blog Post</h2>
+                <div class="bread-crumbs"><a href="/">Home<span class="breadcrumb-sep">//</span></a><span class="active">Blog</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--== End Page Title Area ==-->
+   
+
+    <!--== Start Blog Area Wrapper ==-->
+    <section class="blog-details-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="blog-details-column">
+              <div class="post-details-content">
+                <div class="post-details-body">
+                  <div class="thumb">
+                    <img class="w-100" src="{{obj.mainImg.url}}" alt="Givest-HasTech">
+                  </div>
+                  <div class="content">
+                    <div class="meta">
+                      <a class="post-category" href="">{{obj.category}}</a>
+                      <a class="post-author" href="blog.html"><span class="icon"><img class="icon-img" src="{% static 'assets/img/icons/admin1.png' %}" alt="Icon-Image"></span>By: </a>
+                    </div>
+                    <h2 class="title">{{obj.title}}</h2>
+                    <p>{{obj.description|safe}}</p>
+                    
+              
+                  </div>
+                  
+                </div>
+              </div>
+              <div class="sidebar-area">
+               
+                <div class="widget">
+                  <h3 class="widget-title">Causes Categories</h3>
+                  <div class="separator-line">
+                    <img class="me-1" src="{% static 'assets/img/shape/line-t2.png' %}" alt="Image-Givest">
+                  </div>
+                  <div class="widget-category">
+                    {% for cat in categorys %}
+                    <a href="causes-details.html">{{cat.category}} <span>{{cat.blog_cat.count}}</span></a>
+                    {% endfor %}
+                  </div>
+                </div>
+                
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--== End Blog Area Wrapper ==-->
+  </main>
+
+{% endblock %}
