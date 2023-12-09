@@ -5,7 +5,6 @@ from django.http import HttpResponse , JsonResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def home(request):
-    
     categories = ['Clean Water', 'Healthy Food', 'Medical Help']
     category_queryset = blog_category.objects.filter(category__in=categories)
     blogs=blog.objects.all()[:3]
